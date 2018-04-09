@@ -1,0 +1,4 @@
+1) Run the app with command "node server.js"
+2) This app needs a MongoDB database.
+3) Enter the two number and click Calculate will calculate the product and save the data to the DB
+4) Reload the page and the it will fetch the documents created and display the JSON on the  DOM.
