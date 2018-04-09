@@ -1,0 +1,45 @@
+<html ng-app="myApp">
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body ng-controller="mainController" ng-init="init()">
+<div class="container">
+ <form name="myForm" action="/saveData" method="POST">
+  <div class="form-group">
+  <input type="number" class="form-control" name="firstNumber" ng-model="firstNumber" ng-init="0" required/>
+  </div>
+  <div class="form-group">
+  <input type="number" class="form-control" name="secondNumber" ng-model="secondNumber" ng-init="0" required/>
+  </div>
+  <input type="submit" class="btn btn-default" ng-disabled="myForm.$invalid"  value="Calculate" ng-click="product = firstNumber * secondNumber"/>
+  Product :  {{product}}
+ </form>
+</div>
+{{result}}
+</body>
+
+
+<style>
+  input.ng-invalid{
+    color:red;
+  }
+  input.ng-valid{
+    color: black;
+  }
+</style>
+
+<script type="text/javascript">
+  var myApp = angular.module("myApp", []);		
+  myApp.controller("mainController", function($scope, $http) {
+    $scope.init = function () {
+      $http.get('/getData').then((response) => {
+        $scope.result = response.data;
+      })
+      };
+
+    
+  });
+</script>
+</html>
